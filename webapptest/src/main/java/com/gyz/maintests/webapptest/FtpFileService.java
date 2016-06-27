@@ -1,5 +1,6 @@
 package com.gyz.maintests.webapptest;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,7 @@ public class FtpFileService implements InitializingBean {
         }
     }
 
-    public boolean upLoadFile(File upLoadFile) {
+    public boolean upLoadFile(File upLoadFile) throws IOException {
 
         if (!upLoadFile.exists()) {
 
@@ -48,6 +49,8 @@ public class FtpFileService implements InitializingBean {
         }
 
         FTPClient ftpClient = ftpConnectService.obtainFtpService();
+        ftpClient.enterLocalPassiveMode();
+        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
         try (FileInputStream fileInputStream = new FileInputStream(upLoadFile);) {
 
             ftpClient.changeWorkingDirectory(TEM_DIRECTORY);

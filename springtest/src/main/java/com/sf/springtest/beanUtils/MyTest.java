@@ -23,11 +23,22 @@ class Student {
 
     public static void main(String[] args) {
 
-        for (int i = 0; i < 10; i++) {
+        System.out.println("hello world 1");
+        System.out.println("hello world 2");
+        System.out.println("hello world 3");
+        System.out.println("hello world 4");
+        System.out.println("hello world 5");
+        System.out.println("hello world 6");
 
-            String zhangsan = new String("zhangsan");
+        new Thread(new Runnable() {
+            public void run() {
 
-        }
+                System.out.println("nihao zhangsan");
+                System.out.println("nihao zhangsan1");
+                System.out.println("nihao zhangsan2");
+                System.out.println("nihao zhangsan3");
+            }
+        }).start();
     }
     public Student() {
     }
